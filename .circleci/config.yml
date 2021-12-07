@@ -29,7 +29,6 @@ jobs:
       - run :
           name: Connect to EC2 instance
           command: |
-            echo Start deploy
             ssh -o StrictHostKeyChecking=no ubuntu@18.208.169.102 git@github.com:aswin219/flaskapp-aws.git app sudo nohup python3 app/app.py > log.txt 2>&1 &
               
             

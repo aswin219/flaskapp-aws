@@ -13,7 +13,7 @@ jobs:
       - run : 
           name: compile python app
           command: 
-            python -m py_compile app.py
+            python3 app.py
   deploy:
     docker:
       - image: cimg/base:2021.10
@@ -22,27 +22,22 @@ jobs:
       - run :
           name: Install python dependencies
           command: |
-            #! /bin/bash
-            sudo apt update -y
-            sudo apt install python3 -y
-            sudo apt install python3-flask -y
+            sudo apt update 
+            sudo apt install python3 
+            sudo apt install python3-flask 
             flask --version
       - run :
           name: Connect to ec2 instance
           command: |
-            #! /bin/bash
             echo Start deploy
             ssh -o StrictHostKeyChecking=no ubuntu@18.208.169.102 git@github.com:aswin219/flaskapp-aws.git app sudo nohup python3 app/app.py > log.txt 2>&1 &
               
             
 workflows:
-  build-work:
+  mybuild:
     jobs:
       - build
       - deploy:
-          filters:
-            branches:
-              only: main
           requires:
             - build
 

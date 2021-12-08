@@ -11,7 +11,7 @@ jobs:
           command: 
             pip install flask
       - run : 
-          name: compile python app
+          name: Compile python app
           command: 
             python -m py_compile app.py
   deploy:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run :
-          name: basic setup
+          name: Basic setup
           command: |
             sudo apt update 
             sudo apt install python3 
